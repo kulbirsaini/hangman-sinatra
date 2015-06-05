@@ -1,6 +1,10 @@
 Bundler.require if defined?(Bundler)
 
 class App < Sinatra::Base
+  configure :development do
+    register Sinatra::Reloader
+  end
+
   cattr_reader :root, :connection_info, :connection, :migrations_dir, :views_dir
   cattr_accessor :env
 
