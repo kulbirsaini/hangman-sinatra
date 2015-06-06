@@ -11,11 +11,9 @@ HangmanControllers.controller('GamesIndexCtrl', ['$scope', '$location', 'Hangman
     $scope.createGame = function(){
       Hangman.post({}, {},
         function(data){
-          console.log(data);
           $location.path('/games/' + data.id);
         },
         function(error){
-          console.log(error);
           if (error.status === 422){
             $scope.notice = error.data.notice;
             $scope.errors = error.data.errors;
@@ -35,13 +33,14 @@ HangmanControllers.controller('GamesIndexCtrl', ['$scope', '$location', 'Hangman
   }
 ]);
 
-HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '$location', 'Hangman',
-  function($scope, $route, $routeParams, $location, Hangman){
+HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '$location', '$rootScope', 'Hangman',
+  function($scope, $route, $routeParams, $location, $rootScope, Hangman){
     $scope.initializeData = function(){
       $scope.characters = 'abcdefghijklmnopqrstuvwxyz';
       $scope.game = {};
       $scope.notice = null;
       $scope.errors = null;
+      $rootScope.listen = false;
     };
 
     $scope.isGameBusy = function(){
@@ -76,16 +75,17 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
     };
 
     $scope.makeGuess = function(character){
+      $rootScope.listen = false;
       $scope.notice = null;
       $scope.errors = null;
       Hangman.post({ id: $routeParams.id }, { char: character },
         function(data){
-          console.log(data);
           $scope.game = data;
           $scope.notice = data.notice;
+          $rootScope.listen = true;
         },
         function(error){
-          console.log(error);
+          $rootScope.listen = true;
           if (error.status === 422){
             $scope.notice = error.data.notice;
             $scope.errors = error.data.errors;
@@ -100,13 +100,24 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
       );
     };
 
+    $scope.$on('key.alphabet',
+      function(event, keyCode){
+        if ($scope.isGameBusy()){
+          $scope.makeGuess(String.fromCharCode(keyCode).toLowerCase());
+          event.preventDefault();
+        }
+      }
+    );
+
     $scope.initializeData();
     Hangman.get({ id: $routeParams.id },
       function(data){
         $scope.game = data;
         $scope.notice = data.notice;
+        $rootScope.listen = true;
       },
       function(error){
+        $rootScope.listen = true;
         if (error.status === 422){
           $scope.notice = error.data.notice;
           $scope.errors = error.data.errors;
@@ -120,45 +131,5 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
       }
     );
 
-    ////Handle Keypress
-    //$scope.$on('key.escape', function(event){ $scope.redirectToParentGallery(); });
-    //$scope.$on('key.up', function(event){ $scope.goToFirstImage(); });
-    //$scope.$on('key.left', function(event){ $scope.goToPreviousImage(); });
-    //$scope.$on('key.right', function(event){ $scope.goToNextImage(); });
-    //$scope.$on('key.down', function(event){ $scope.goToLastImage(); });
-
-    //// Watch variables
-    //$scope.$watch("currentAngle", function(value){
-    //  $scope.transformStyle = "rotate(" + $scope.currentAngle + "deg)";
-    //  $scope.setSlideHeightPadding();
-    //  $scope.setRotatedWidth();
-    //});
-    //$scope.$watch("currentIndex", function(value){ $scope.currentAngle = 0; $scope.setLeftOffset(); });
-    //$scope.$watch("circular", function(value){ Settings.setValue('circular', value); });
-    //$scope.$watch("quality", function(value){ Settings.setValue('quality', value); });
-
-    //// Monitor window resize
-    //jQuery(window).on('resize.doResize', function(){
-    //  $scope.$apply(function(){
-    //    var current_image = jQuery('.current-img');
-    //    current_image.hide();
-    //    $scope.setSlideHeightPadding();
-    //    $scope.setRotatedWidth();
-    //    $scope.setLeftOffset();
-    //    current_image.show();
-    //  })
-    //});
-    //$scope.$on("$destroy", function(){ jQuery(window).off('resize.doResize'); });
-
-    //// Change URL without reloading controller
-    //$scope.$on("$locationChangeSuccess", function(event){ if ($route.current.$$route.controller == 'SlideshowCtrl'){ $route.current = $scope.lastRoute; } });
-
-    //$scope.initializeData();
-    //Gallery.getObject({ operation: 'parent', id: $scope.gallery_id }, function(data){ $scope.parent_id = data.parent_id; });
-    //Gallery.getCollection({ operation: 'photos', id: $scope.gallery_id }, $scope.appendToImages)
-    //if (typeof(Settings.getValue('quality')) !== "undefined"){
-    //  $scope.circular = Settings.getValue('circular');
-    //  $scope.quality = Settings.getValue('quality');
-    //}
   }
 ]);
