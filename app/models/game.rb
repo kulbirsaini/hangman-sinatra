@@ -3,8 +3,8 @@ class Game < ActiveRecord::Base
 
   VALID_STATUS = ['busy', 'failed', 'success']
 
-  validates :word, presence: true, format: { with: /[a-z]/, message: 'should contain only lowercase alphabets' }
-  validates :guessed_chars, format: { with: /[a-z]/, message: 'should contain only lowercase alphabets' }, if: "guessed_chars.present?"
+  validates :word, presence: true, format: { with: /\A[a-z]+\z/, message: 'should contain only lowercase alphabets' }
+  validates :guessed_chars, format: { with: /\A[a-z]+\z/, message: 'should contain only lowercase alphabets' }, if: "guessed_chars.present?"
   validates :tries_left, presence: true, numericality: { only_integer: true, greater_than: -1, less_than_or_equal_to: 11 }
   validates :status, presence: true, inclusion: { in: VALID_STATUS, message: "should be one of #{VALID_STATUS.join(', ')}" }
 
@@ -27,7 +27,10 @@ class Game < ActiveRecord::Base
   private
 
   def get_random_word
-    JSON.parse(open('http://api.wordnik.com/v4/words.json/randomWord?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').read)['word']
+    5.times do
+      word = JSON.parse(open('http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=6&maxLength=20&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').read)['word'].downcase
+      return word if word =~ /\A[a-z]+\z/
+    end
   end
 
   def set_defaults
