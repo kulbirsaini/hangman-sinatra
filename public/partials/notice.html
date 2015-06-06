@@ -1,0 +1,11 @@
+<div class="alert-info alert" ng-hide="!notice">
+  {{notice}}
+</div>
+
+<div class="alert-danger alert" ng-hide="!errors">
+  <ul>
+    <li ng-repeat="error in errors">
+    {{error}}
+    </li>
+  </ul>
+</div>

@@ -15,5 +15,12 @@
 /log/*
 !/log/.keep
 /tmp
-.*.sw*
 test/
+
+# node
+node_modules/
+npm-debug.log
+
+# bower
+pubic/components/
+pubic/assets/css/

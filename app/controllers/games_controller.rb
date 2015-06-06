@@ -1,11 +1,6 @@
 class GamesController < ApplicationController
   before do
-    content_type 'application/json'
-    headers \
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST',
-      'Access-Control-Request-Method': '*',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
+    params.merge!(JSON.parse(request.body.read)) if request.request_method == "POST"
   end
 
   before '/games/:id.json' do
@@ -38,7 +33,7 @@ class GamesController < ApplicationController
       end
     else
       status 422
-      { errors: @game.errors.full_messages }.to_json
+      { notice: 'Failed to create new game', errors: @game.errors.full_messages }.to_json
     end
   end
 
@@ -69,7 +64,7 @@ class GamesController < ApplicationController
           json.extract! @game, :id, :tries_left, :guessed_chars, :status
           json.word @game.current_word
           json.guess_status guess_status
-          json.message message[:notice]
+          json.notice message[:notice]
           json.created_at @game.created_at.to_i
           json.updated_at @game.updated_at.to_i
         end
@@ -122,7 +117,7 @@ class GamesController < ApplicationController
       correct_guess = false
     end
     if @game.current_word.include?('.')
-      @game.status = 'fail' if @game.tries_left == 0
+      @game.status = 'failed' if @game.tries_left == 0
     else
       @game.status = 'success'
     end

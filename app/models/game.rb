@@ -13,7 +13,7 @@ class Game < ActiveRecord::Base
   end
 
   def failed?
-    status == 'fail'
+    status == 'failed'
   end
 
   def success?

@@ -1,0 +1,29 @@
+<div ng-include="'partials/notice.html'"></div>
+<h1 class="text-center">All Games</h1>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Word</th>
+      <th>Tries left</th>
+      <th>Guessed chars</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="game in games">
+      <td>{{game.id}}</td>
+      <td>{{game.word}}</td>
+      <td>{{game.tries_left}}</td>
+      <td>{{game.guessed_chars}}</td>
+      <td>{{game.status}}</td>
+      <td><a href="#/games/{{game.id}}">{{(game.status === 'busy') ? 'Play' : 'Show'}}</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<a ng-click="createGame()" class="btn btn-success">New Game</a>

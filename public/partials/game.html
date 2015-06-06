@@ -1,0 +1,26 @@
+<div ng-include="'partials/notice.html'"></div>
+<h1 class="text-center">Game #{{game.id}}</h1>
+<p>
+  <strong>Word: </strong>
+  <span class="spaced-letters">{{game.word}}</span>
+</p>
+
+<p>
+  <strong>Tries left: </strong>
+  {{game.tries_left}}
+</p>
+
+<p>
+  <strong>Guesses: </strong>
+  <span class="spaced-letters">{{game.guessed_chars}}</span>
+</p>
+
+<p>
+  <strong>Status</strong>
+  {{game.status}}
+</p>
+
+<button ng-repeat="character in characters" ng-click="makeGuess(character)" name="char" type="button" value="{{character}}" ng-disabled="isButtonDisabled(character)" class="btn btn-{{getButtonTypeForChar(character)}}"><span>{{character}}</span></button>
+
+<br />
+<a href="#/" class="btn btn-success">Back</a>

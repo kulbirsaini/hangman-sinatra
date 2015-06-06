@@ -1,0 +1,55 @@
+@import '../../../public/components/bootstrap-sass/assets/stylesheets/_bootstrap';
+
+.hidden { display: none; }
+div.top-buffer { margin-top: 20px; }
+div.bottom-buffer { margin-bottom: 20px; }
+img.img-center { margin: 0 auto; }
+
+header {
+  background: #555;
+  a { color: #eee; }
+  a:hover, a:focus { color: #555; }
+  .navbar-brand { font-size: 20px; }
+  .navbar-brand:hover, .navbar-brand:focus { background: white; }
+
+  .navbar-toggle {
+    .icon-bar {
+      background: white;
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 1px;
+    }
+  }
+}
+
+.content {
+  margin: 0 auto;
+  padding-top: 40px;
+  float: none;
+
+  p > strong {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+
+  span.spaced-letters {
+    letter-spacing: 10px;
+  }
+
+  button.btn {
+    margin-right: 5px;
+    margin-bottom: 10px;
+    width: 55px;
+
+    span {
+      text-transform: uppercase;
+    }
+  }
+}
+
+
+//@media (max-width: $screen-xs-max), (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {}
+//@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
+//@media (min-width: $screen-md-min) and (max-width: $screen-md-max) { }
+//@media (min-width: $screen-lg-min) { }
