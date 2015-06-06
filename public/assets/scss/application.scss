@@ -29,12 +29,25 @@ header {
   float: none;
 
   p > strong {
-    margin-right: 10px;
+    margin-right: 5px;
     font-size: 16px;
   }
 
-  span.spaced-letters {
-    letter-spacing: 10px;
+  span.spaced-letter {
+    background-color: gray;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 2px 4px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin-right: 3px;
+  }
+
+  span.guessed-letters {
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
   button.btn {

@@ -2,7 +2,7 @@
 <h1 class="text-center">Game #{{game.id}}</h1>
 <p>
   <strong>Word: </strong>
-  <span class="spaced-letters">{{game.word}}</span>
+  <span class="spaced-letter" ng-repeat="character in game.word track by $index">{{character}}</span>
 </p>
 
 <p>
@@ -12,7 +12,7 @@
 
 <p>
   <strong>Guesses: </strong>
-  <span class="spaced-letters">{{game.guessed_chars}}</span>
+  <span class="guessed-letters">{{game.guessed_chars}}</span>
 </p>
 
 <p>
