@@ -40,6 +40,7 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
       $scope.game = {};
       $scope.notice = null;
       $scope.errors = null;
+      $scope.isMakingGuess = true;
       $rootScope.listen = false;
     };
 
@@ -75,6 +76,7 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
     };
 
     $scope.makeGuess = function(character){
+      $scope.isMakingGuess = true;
       $rootScope.listen = false;
       $scope.notice = null;
       $scope.errors = null;
@@ -83,9 +85,11 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
           $scope.game = data;
           $scope.notice = data.notice;
           $rootScope.listen = true;
+          $scope.isMakingGuess = false;
         },
         function(error){
           $rootScope.listen = true;
+          $scope.isMakingGuess = false;
           if (error.status === 422){
             $scope.notice = error.data.notice;
             $scope.errors = error.data.errors;
@@ -115,9 +119,11 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
         $scope.game = data;
         $scope.notice = data.notice;
         $rootScope.listen = true;
+        $scope.isMakingGuess = false;
       },
       function(error){
         $rootScope.listen = true;
+        $scope.isMakingGuess = false;
         if (error.status === 422){
           $scope.notice = error.data.notice;
           $scope.errors = error.data.errors;

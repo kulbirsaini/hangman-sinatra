@@ -20,7 +20,9 @@
   {{game.status}}
 </p>
 
-<button ng-repeat="character in characters" ng-click="makeGuess(character)" name="char" type="button" value="{{character}}" ng-disabled="isButtonDisabled(character)" class="btn btn-{{getButtonTypeForChar(character)}}"><span>{{character}}</span></button>
+<fieldset ng-disabled="isMakingGuess">
+  <button ng-repeat="character in characters" ng-click="makeGuess(character)" name="char" type="button" value="{{character}}" ng-disabled="isButtonDisabled(character)" class="btn btn-{{getButtonTypeForChar(character)}}"><span>{{character}}</span></button>
+</fieldset>
 
 <br />
 <a href="#/" class="btn btn-success">Back</a>
