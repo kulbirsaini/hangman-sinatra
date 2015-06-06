@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before do
-    params.merge!(JSON.parse(request.body.read)) if request.request_method == "POST"
+    params.merge!(JSON.parse(request.body.read)) rescue nil if request.request_method == "POST"
   end
 
   before '/games/:id.json' do

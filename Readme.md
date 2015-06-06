@@ -26,7 +26,8 @@ curl -H 'Content-Type: application/json' \
       "guessed_chars":"jldgnykihf",
       "status":"fail",
       "word":"diyarbakir",
-      "url":"http://yd9.net/games/1.json"
+      "created_at":1433591284,
+      "updated_at":1433591373
     },
     {
       "id":2,
@@ -34,7 +35,8 @@ curl -H 'Content-Type: application/json' \
       "guessed_chars":"eurnlkiab",
       "status":"success",
       "word":"unlikable",
-      "url":"http://yd9.net/games/2.json"
+      "created_at":1433591284,
+      "updated_at":1433591373
     },
     {
       "id":6,
@@ -42,7 +44,8 @@ curl -H 'Content-Type: application/json' \
       "guessed_chars":"jpei",
       "status":"busy",
       "word":"...i.e..",
-      "url":"http://yd9.net/games/6.json"
+      "created_at":1433591284,
+      "updated_at":1433591373
     },
     ...
   ]
@@ -55,7 +58,7 @@ curl -H 'Content-Type: application/json' \
 
 ```bash
 curl -H 'Content-Type: application/json' \
-     -d '' \
+     -d '{}' \
      -w '\nResponse Code: %{http_code}\n' \
      -X POST http://yd9.net/games.json
 ```
@@ -69,7 +72,8 @@ curl -H 'Content-Type: application/json' \
     "guessed_chars":"",
     "status":"busy",
     "word":".........",
-    "url":"http://yd9.net/games/12.json"
+    "created_at":1433591989,
+    "updated_at":1433591989
   }
   Response Code: 201
 ```
@@ -93,7 +97,8 @@ curl -H 'Content-Type: application/json' \
     "guessed_chars":"eurnlkiab",
     "status":"success",
     "word":"unlikable",
-    "url":"http://yd9.net/games/2.json"
+    "created_at":1433591989,
+    "updated_at":1433591989
   }
   Response Code: 200
 ```
@@ -118,8 +123,10 @@ curl -H 'Content-Type: application/json' \
     "guessed_chars":"he",
     "status":"busy",
     "word":"...e...ee.",
-    "guess_status":"correct",
-    "url":"http://yd9.net/games/10.json"
+    "guess_status":"invalid_char",
+    "notice":"Invalid character",
+    "created_at":1433591408,
+    "updated_at":1433591408
   }
   Response Code: 200
 ```
