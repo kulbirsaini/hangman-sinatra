@@ -25,11 +25,20 @@ HangmanControllers.controller('GamesIndexCtrl', ['$scope', '$location', 'Hangman
             $location.path('/500');
           }
         }
-      );
+      ).$promise.catch(function(response){
+        if (response.status === 0){
+          $scope.notice = 'Request Timed Out';
+        }
+      });
     };
 
     $scope.initializeData();
-    Hangman.query(function(data){ $scope.games = data; });
+    Hangman.query(function(data){ $scope.games = data; })
+    .$promise.catch(function(response){
+      if (response.status === 0){
+        $scope.notice = 'Request Timed Out';
+      }
+    });
   }
 ]);
 
@@ -101,7 +110,40 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
             $location.path('/500');
           }
         }
-      );
+      ).$promise.catch(function(response){
+        if (response.status === 0){
+          $scope.notice = 'Request Timed Out';
+        }
+      });
+    };
+
+    $scope.setGame = function(){
+      Hangman.get({ id: $routeParams.id },
+        function(data){
+          $scope.game = data;
+          $scope.notice = data.notice;
+          $rootScope.listen = true;
+          $scope.isMakingGuess = false;
+        },
+        function(error){
+          $rootScope.listen = true;
+          $scope.isMakingGuess = false;
+          if (error.status === 422){
+            $scope.notice = error.data.notice;
+            $scope.errors = error.data.errors;
+          }
+          if (error.status === 404){
+            $location.path('/404');
+          }
+          else if (error.status >= 500){
+            $location.path('/500');
+          }
+        }
+      ).$promise.catch(function(response){
+        if (response.status === 0){
+          $scope.notice = 'Request Timed Out';
+        }
+      });
     };
 
     $scope.$on('key.alphabet',
@@ -114,28 +156,6 @@ HangmanControllers.controller('GameCtrl', ['$scope', '$route', '$routeParams', '
     );
 
     $scope.initializeData();
-    Hangman.get({ id: $routeParams.id },
-      function(data){
-        $scope.game = data;
-        $scope.notice = data.notice;
-        $rootScope.listen = true;
-        $scope.isMakingGuess = false;
-      },
-      function(error){
-        $rootScope.listen = true;
-        $scope.isMakingGuess = false;
-        if (error.status === 422){
-          $scope.notice = error.data.notice;
-          $scope.errors = error.data.errors;
-        }
-        if (error.status === 404){
-          $location.path('/404');
-        }
-        else if (error.status >= 500){
-          $location.path('/500');
-        }
-      }
-    );
-
+    $scope.setGame();
   }
 ]);
