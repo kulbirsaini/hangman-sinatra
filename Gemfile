@@ -8,3 +8,11 @@ gem 'activerecord', require: 'active_record'
 gem 'sqlite3'
 gem 'hirb'
 gem 'thin'
+# To compile scss files.
+gem 'sass'
+
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano-passenger'
