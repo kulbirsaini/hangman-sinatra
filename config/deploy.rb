@@ -36,8 +36,8 @@ namespace :deploy do
   task :grunt do
     on roles(:app), in: :sequence, wait: 10 do
       within release_path do
-        execute :grunt, "copy"
-        execute :grunt, "sass"
+        execute :bundle, "exec grunt copy"
+        execute :bundle, "exec grunt sass"
       end
     end
   end

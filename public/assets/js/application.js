@@ -2,7 +2,7 @@ var Hangman = angular.module("Hangman", [
   'ngResource',
   'ngRoute',
   'HangmanControllers',
-  'HangmanConfig.development',
+  'HangmanConfig.production',
   'HangmanServices',
 ]);
 
