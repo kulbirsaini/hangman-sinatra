@@ -1,7 +1,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 def app
-  App
+  Application
 end
 
-run App
+run Application

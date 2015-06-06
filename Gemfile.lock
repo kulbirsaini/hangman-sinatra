@@ -21,6 +21,9 @@ GEM
     eventmachine (1.0.7)
     hirb (0.7.3)
     i18n (0.7.0)
+    jbuilder (2.2.16)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
     json (1.8.3)
     minitest (5.7.0)
     multi_json (1.11.0)
@@ -55,8 +58,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  activesupport
   hirb
+  jbuilder
   sinatra
   sinatra-contrib
   sqlite3

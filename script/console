@@ -24,6 +24,5 @@ module IRB # :nodoc:
 end
 
 if __FILE__ == $0
-  App.connect
   IRB.start_session(binding)
 end

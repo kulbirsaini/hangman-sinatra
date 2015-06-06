@@ -3,6 +3,10 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  after do
+    ActiveRecord::Base.connection.close
+  end
+
   get '/' do
     redirect '/games'
   end

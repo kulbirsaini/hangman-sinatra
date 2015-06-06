@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration
       t.string :word, null: false
       t.integer :tries_left, null: false
       t.string :guessed_chars
-      t.boolean :status, null: false
+      t.string :status, null: false
 
       t.timestamps null: false
     end

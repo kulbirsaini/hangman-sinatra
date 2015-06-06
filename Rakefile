@@ -1,4 +1,5 @@
-require File.expand_path('../config/application', __FILE__)
+require File.expand_path('../config/boot', __FILE__)
+require File.expand_path('../config/environment', __FILE__)
 
 namespace :db do
   desc 'Establiish fake connection to database'

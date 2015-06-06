@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'sinatra-contrib'
+# Have to force require nil otherwise Rakefile wont work
+gem 'sinatra-contrib', require: nil
+gem 'jbuilder'
 gem 'activerecord', require: 'active_record'
-gem 'activesupport', require: 'active_support/all'
 gem 'sqlite3'
 gem 'hirb'
 gem 'thin'
