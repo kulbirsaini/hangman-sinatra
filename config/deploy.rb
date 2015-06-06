@@ -9,7 +9,7 @@ set :scm, :git
 # Default value for :format is :pretty
 # set :format, :pretty
 set :log_level, :info
-set :linked_files, fetch(:linked_files, []).push('tmp/restart.txt')
+set :linked_files, fetch(:linked_files, []).push('tmp/restart.txt', 'db/production.sqlite3')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'node_modules', 'public/components')
 set :keep_releases, 2
 set :bundle_path, -> { shared_path.join('bundle') }
