@@ -109,7 +109,7 @@ curl -H 'Content-Type: application/json' \
 
 ```bash
 curl -H 'Content-Type: application/json' \
-     -d '{"game": { "char": "a" } }' \
+     -d '{ "char": "e" }' \
      -w '\nResponse Code: %{http_code}\n' \
      -X POST http://yd9.net/games/10.json
 ```
@@ -123,8 +123,8 @@ curl -H 'Content-Type: application/json' \
     "guessed_chars":"he",
     "status":"busy",
     "word":"...e...ee.",
-    "guess_status":"invalid_char",
-    "notice":"Invalid character",
+    "guess_status":"correct",
+    "notice":"Correct guess",
     "created_at":1433591408,
     "updated_at":1433591408
   }
