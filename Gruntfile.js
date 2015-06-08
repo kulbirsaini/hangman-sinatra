@@ -7,7 +7,7 @@ module.exports = function(grunt){
       assets: 'public/assets',
       css: 'public/assets/css',
       scss: 'public/assets/scss',
-      components: 'public/components'
+      components: 'public/bower_components'
     },
     sass: {
       dist: {

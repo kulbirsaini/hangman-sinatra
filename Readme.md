@@ -131,7 +131,7 @@ curl -H 'Content-Type: application/json' \
   Response Code: 200
 ```
 
-## <a name="about_me"></a>About Me [&uarr;](#contents)
+## <a name="about_me"></a>About Me
 [Kulbir Saini](http://saini.co.in/),
 Senior Developer / Programmer,
 Hyderabad, India
@@ -139,7 +139,7 @@ Hyderabad, India
 ## Contact Me
 Kulbir Saini - contact [AT] saini.co.in / [@_kulbir](https://twitter.com/_kulbir)
 
-## <a name="license"></a>License [&uarr;](#contents)
+## <a name="license"></a>License
 Copyright (c) 2015 Kulbir Saini
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

@@ -1,6 +1,7 @@
 class ApplicationController < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
+    Dir.glob(SinatraApp::Application.root.join("app/models/*.rb")).each{ |f| also_reload f }
   end
 
   before do
@@ -21,6 +22,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    redirect '/games'
+    redirect '/games.json'
   end
 end

@@ -10,8 +10,8 @@ set :scm, :git
 # set :format, :pretty
 set :log_level, :info
 set :linked_files, fetch(:linked_files, []).push('tmp/restart.txt', 'db/production.sqlite3')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'node_modules', 'public/components')
-set :keep_releases, 2
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'node_modules', 'public/bower_components')
+set :keep_releases, 1
 set :bundle_path, -> { shared_path.join('bundle') }
 
 namespace :deploy do
