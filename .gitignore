@@ -14,8 +14,3 @@ test/
 # node
 node_modules/
 npm-debug.log
-
-# bower
-pubic/bower_components/
-pubic/assets/css/
-pubic/assets/fonts/
