@@ -14,3 +14,8 @@ test/
 # node
 node_modules/
 npm-debug.log
+
+# bower
+public/bower_components/
+public/assets/css/
+public/assets/fonts/
